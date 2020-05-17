@@ -16,6 +16,11 @@ def login(email, password):
 
     return requests.request('POST', url, data=payload)
 
+def logout():
+    url = "https://multiresa.net/sports/club/reebok/membre-deconnexion.html"
+
+    return requests.request('GET', url)
+
 
 def get_with_auth(url, auth):
     headers = {'Cookie': auth}
@@ -54,10 +59,16 @@ def main(email, password):
     # # Book wednesday
     print("> Booking for wednesday {}".format(next_wed))
     res_wednesday = book_wednesday(auth, next_wed)
+    print("> Booking for wednesday {}".format(res_wednesday.text))
 
     # # Book friday
     print("> Booking for friday {}".format(next_fri))
     res_friday = book_friday(auth, next_fri)
+    print("> Booking for friday {}".format(res_friday.text))
+
+    # # Logout
+    logout()
+
 
 
 if __name__ == "__main__":
