@@ -16,6 +16,7 @@ def login(email, password):
 
     return requests.request('POST', url, data=payload)
 
+
 def logout():
     url = "https://multiresa.net/sports/club/reebok/membre-deconnexion.html"
 
@@ -27,15 +28,16 @@ def get_with_auth(url, auth):
     return requests.request("GET", url, headers=headers)
 
 
-def book_friday(auth, date):
-    url = "https://multiresa.net/sports/app/req/requestResa.php?action=sendresa&idcompte=reebok&activite=58&refCRENO=64029591&numCRENO=1&lejour={}&lecreno=0800&leidU=0&resadirect=0&lenomU= &leprenomU= &letelU= &lemailU= &lemultiU=1&effectif=9&lepartenaireU=0&callback=jQuery11110057299936134415086_1589642160431".format(
+def book_wednesday(auth, date):
+    url = "https://multiresa.net/sports/app/req/requestResa.php?action=sendresa&idcompte=reebok&activite=58&refCRENO=64288541&numCRENO=1&lejour={}&lecreno=0800&leidU=0&resadirect=0&lenomU= &leprenomU= &letelU= &lemailU= &lemultiU=1&effectif=9&lepartenaireU=0&callback=jQuery11110733734535711519_1589646622704&_=1589646622712".format(
         date)
     return get_with_auth(url, auth)
 
 
-def book_wednesday(auth, date):
-    url = "https://multiresa.net/sports/app/req/requestResa.php?action=sendresa&idcompte=reebok&activite=58&refCRENO=64288541&numCRENO=1&lejour={}&lecreno=0800&leidU=0&resadirect=0&lenomU= &leprenomU= &letelU= &lemailU= &lemultiU=1&effectif=9&lepartenaireU=0&callback=jQuery11110733734535711519_1589646622704&_=1589646622712".format(
+def book_friday(auth, date):
+    url = "https://multiresa.net/sports/app/req/requestResa.php?action=sendresa&idcompte=reebok&activite=58&refCRENO=64029729&numCRENO=1&lejour={}&lecreno=1145&leidU=0&resadirect=0&lenomU= &leprenomU= &letelU= &lemailU= &lemultiU=1&effectif=9&lepartenaireU=0&callback=jQuery111106262353388596023_1589753468290&_=1589753468292".format(
         date)
+
     return get_with_auth(url, auth)
 
 
@@ -70,7 +72,6 @@ def main(email, password):
 
     # # Logout
     logout()
-
 
 
 if __name__ == "__main__":
