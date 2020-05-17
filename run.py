@@ -51,6 +51,8 @@ def main(email, password):
     d = datetime.date.today()
     next_wed, next_fri = next_weekday(d, 2), next_weekday(d, 4)
 
+    print("> Running at {}".format(datetime.datetime.now()))
+
     # # Login
     res_login = login(email, password)
     auth = res_login.headers['Set-Cookie'].split(';')[0]
