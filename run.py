@@ -28,6 +28,18 @@ def get_with_auth(url, auth):
     return requests.request("GET", url, headers=headers)
 
 
+def book_monday(auth, date):
+    url = "https://multiresa.net/sports/app/req/requestResa.php?action=sendresa&idcompte=reebok&activite=58&refCRENO=64289098&numCRENO=1&lejour={}&lecreno=1215&leidU=0&resadirect=0&lenomU= &leprenomU= &letelU= &lemailU= &lemultiU=1&effectif=9&lepartenaireU=0&callback=jQuery111107388843733109449_1591020662852&_=1591020662853".format(
+        date)
+    return get_with_auth(url, auth)
+
+
+def book_tuesday(auth, date):
+    url = "https://multiresa.net/sports/app/req/requestResa.php?action=sendresa&idcompte=reebok&activite=58&refCRENO=64288860&numCRENO=1&lejour={}&lecreno=1215&leidU=0&resadirect=0&lenomU= &leprenomU= &letelU= &lemailU= &lemultiU=1&effectif=9&lepartenaireU=0&callback=jQuery1111006633657723714825_1591020966450&_=1591020966451".format(
+        date)
+    return get_with_auth(url, auth)
+
+
 def book_wednesday(auth, date):
     url = "https://multiresa.net/sports/app/req/requestResa.php?action=sendresa&idcompte=reebok&activite=58&refCRENO=64288541&numCRENO=1&lejour={}&lecreno=0800&leidU=0&resadirect=0&lenomU= &leprenomU= &letelU= &lemailU= &lemultiU=1&effectif=9&lepartenaireU=0&callback=jQuery11110733734535711519_1589646622704&_=1589646622712".format(
         date)
@@ -51,7 +63,7 @@ def next_weekday(d, weekday):
 def main(email, password):
 
     d = datetime.date.today()
-    next_wed, next_fri = next_weekday(d, 2), next_weekday(d, 4)
+    next_mon, next_tue = next_weekday(d, 0), next_weekday(d, 1)
 
     print("> Running at {}".format(datetime.datetime.now()))
 
@@ -61,14 +73,14 @@ def main(email, password):
     print("> Successfully logged with token {}".format(auth))
 
     # # Book wednesday
-    print("> Booking for wednesday {}".format(next_wed))
-    res_wednesday = book_wednesday(auth, next_wed)
-    print("> Booking for wednesday {}".format(res_wednesday.text))
+    print("> Booking for monday {}".format(next_mon))
+    res_monday = book_monday(auth, next_mon)
+    print("> Booking for monday {}".format(res_monday.text))
 
     # # Book friday
-    print("> Booking for friday {}".format(next_fri))
-    res_friday = book_friday(auth, next_fri)
-    print("> Booking for friday {}".format(res_friday.text))
+    print("> Booking for tuesday {}".format(next_tue))
+    res_tuesday = book_tuesday(auth, next_tue)
+    print("> Booking for tuesday {}".format(res_tuesday.text))
 
     # # Logout
     logout()
